@@ -39,9 +39,14 @@ public class Heros {
             testDalleUnique(x, y);
         }
         else{
-            ouvrirPorte(x+1, y);
-            if(traversable(x+2, y)){
-                x = x+2;
+            EntiteStatique es = jeu.getEntite(x+1, y);
+            if (es instanceof Porte) { // si on est sur une case vide
+                ouvrirPorte(x + 1, y, es);
+            }
+            if (es instanceof Vide) { // si on est sur une case vide
+                if (traversable(x+2, y)) {
+                    x = x + 2;
+                }
             }
         }
         if(jeu.getEntite(x, y).ramassables()){
@@ -55,8 +60,14 @@ public class Heros {
             testDalleUnique(x, y);
         }
         else{
-            if (traversable(x-2, y)){
-                x = x-2;
+            EntiteStatique es = jeu.getEntite(x-1, y);
+            if (es instanceof Porte) { // si on est sur une case vide
+                ouvrirPorte(x-1, y, es);
+            }
+            if (es instanceof Vide) { // si on est sur une case vide
+                if (traversable(x-2, y)) {
+                    x = x-2;
+                }
             }
         }
         if(jeu.getEntite(x, y).ramassables()){
@@ -70,8 +81,14 @@ public class Heros {
             testDalleUnique(x, y);
         }
         else{
-            if (traversable(x, y+2)){
-                y = y+2;
+            EntiteStatique es = jeu.getEntite(x, y+1);
+            if (es instanceof Porte) { // si on est sur une case vide
+                ouvrirPorte(x, y+1, es);
+            }
+            if (es instanceof Vide) { // si on est sur une case vide
+                if (traversable(x, y+2)) {
+                    y = y + 2;
+                }
             }
         }
         if(jeu.getEntite(x, y).ramassables()){
@@ -85,8 +102,14 @@ public class Heros {
             testDalleUnique(x, y);
         }
         else{
-            if (traversable(x, y-2)){
-                y = y-2;
+            EntiteStatique es = jeu.getEntite(x, y-1);
+            if (es instanceof Porte) { // si on est sur une case vide
+                ouvrirPorte(x, y-1, es);
+            }
+            if (es instanceof Vide) { // si on est sur une case vide
+                if (traversable(x, y-2)) {
+                    y = y-2;
+                }
             }
         }
         if(jeu.getEntite(x, y).ramassables()){
@@ -114,18 +137,15 @@ public class Heros {
         }
         if(es instanceof Coffre){ // si on est sur un coffre
             System.out.println("Coffre à coder"); // pas encore coder
-            //jeu.addEntiteStatique(new CaseNormale(this), x, y); // on change la clef en case normale
+            jeu.addEntiteStatique(new CaseNormale(jeu), x, y); // on change la clef en case normale
         }
     }
 
-    private void ouvrirPorte(int x, int y){
-        EntiteStatique es = jeu.getEntite(x, y);
-        if (es instanceof Porte) { // si on est sur une porte
-            if(inv.getNbCles() > 0) { // si on a la clef
-                ((Porte) es).setVerrouillee(true); // ouvre la porte
-                inv.removeCles(); //cles --
-                //Code du changement de salle
-            }
+    private void ouvrirPorte(int x, int y, EntiteStatique es){
+        if(inv.getNbCles() > 0) { // si on a la clef
+            ((Porte) es).setVerrouillee(true); // ouvre la porte
+            inv.removeCles(); //cles --
+            //Code du changement de salle
         }
     }
 
@@ -134,5 +154,10 @@ public class Heros {
         if(es instanceof DalleUnique) {
             ((DalleUnique) es).setTraversable(false);
         }
+    }
+    
+    private void saut(int x, int y){
+
+
     }
 }

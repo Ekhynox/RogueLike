@@ -166,6 +166,9 @@ public class VueControleur extends JFrame implements Observer {
                         tabJLabel[x][y].setIcon(icoFire);
                     }
                 }
+                else if (e instanceof Vide) {
+                    tabJLabel[x][y].setIcon(icoVide);
+                }
             }
         }
         tabJLabel[jeu.getHeros().getX()][jeu.getHeros().getY()].setIcon(icoHero);
