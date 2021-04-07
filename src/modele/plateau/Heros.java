@@ -12,7 +12,7 @@ public class Heros {
     private int x;
     private int y;
     private Jeu jeu;
-    private Orientation ori;
+    private Orientation ori = new Orientation();
     private Inventaire inv = new Inventaire();
 
     public Inventaire getInventaire() {
@@ -27,6 +27,10 @@ public class Heros {
         return y;
     }
 
+    public Orientation getOri() {
+        return ori;
+    }
+
     public Heros(Jeu _jeu, int _x, int _y) {
         jeu = _jeu;
         x = _x;
@@ -34,6 +38,7 @@ public class Heros {
     }
 
     public void droite() {
+        ori.droite();
         if (traversable(x+1, y)) {
             x ++;
             testDalleUnique(x, y);
@@ -55,6 +60,7 @@ public class Heros {
    }
 
     public void gauche() {
+        ori.gauche();
         if (traversable(x-1, y)) {
             x --;
             testDalleUnique(x, y);
@@ -76,6 +82,7 @@ public class Heros {
     }
 
     public void bas() {
+        ori.bas();
         if (traversable(x, y+1)) {
             y ++;
             testDalleUnique(x, y);
@@ -97,6 +104,7 @@ public class Heros {
     }
 
     public void haut() {
+        ori.haut();
         if (traversable(x, y-1)) {
             y --;
             testDalleUnique(x, y);
@@ -136,7 +144,17 @@ public class Heros {
             jeu.addEntiteStatique(new CaseNormale(jeu), x, y); // on change la clef en case normale
         }
         if(es instanceof Coffre){ // si on est sur un coffre
-            System.out.println("Coffre à coder"); // pas encore coder
+            int random;
+            do {
+                random = (int)(Math.random() * 3 );
+                if(random == 0) {
+                    inv.addCles();
+                }
+                else if(random == 1) {
+                    inv.addCapsules();
+                }
+                //System.out.println(random);
+            }while(random == 2 ); // Si on a un coffre dans le coffre on recommence 
             jeu.addEntiteStatique(new CaseNormale(jeu), x, y); // on change la clef en case normale
         }
     }
@@ -155,7 +173,7 @@ public class Heros {
             ((DalleUnique) es).setTraversable(false);
         }
     }
-    
+
     private void saut(int x, int y){
 
 

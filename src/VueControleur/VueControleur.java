@@ -81,6 +81,38 @@ public class VueControleur extends JFrame implements Observer {
                         jeu.getHeros().haut();
                         icoHero = haut;
                         break;
+                    case KeyEvent.VK_C:
+                        if(jeu.getHeros().getInventaire().getNbCapsules() > 0) {
+                            EntiteStatique f;
+                            switch (jeu.getHeros().getOri().getOri()) {
+                                case 0:
+                                    f = jeu.getEntite(jeu.getHeros().getX(), jeu.getHeros().getY() -1) ;
+                                    if(f instanceof DalleUnique) {
+                                        ((DalleUnique)f).setTraversable(true);
+                                    }
+                                break;
+                                case 1:
+                                    f = jeu.getEntite(jeu.getHeros().getX(), jeu.getHeros().getY() +1) ;
+                                    if(f instanceof DalleUnique) {
+                                        ((DalleUnique)f).setTraversable(true);
+                                    }
+                                break;
+                                case 2:
+                                    f = jeu.getEntite(jeu.getHeros().getX() -1, jeu.getHeros().getY()) ;
+                                    if(f instanceof DalleUnique) {
+                                        ((DalleUnique)f).setTraversable(true);
+                                    }
+                                break;
+                                case 3:
+                                    f = jeu.getEntite(jeu.getHeros().getX() +1, jeu.getHeros().getY()) ;
+                                    if(f instanceof DalleUnique) {
+                                        ((DalleUnique)f).setTraversable(true);
+                                    }
+                                break;
+                            }
+                            jeu.getHeros().getInventaire().removeCapsule();
+                        }
+                        break;
                 }
             }
         });
