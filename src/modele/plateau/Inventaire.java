@@ -17,7 +17,6 @@ public class Inventaire{
         this.nbCapsules = nbCapsules;
     }
 
-
     public int getNbCles() {
         return nbCles;
     }

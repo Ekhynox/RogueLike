@@ -85,10 +85,11 @@ public class VueControleur extends JFrame implements Observer {
     }
 
     private void chargerLesIcones() {
-        haut = chargerIcone("Images/haut.png");
-        bas = chargerIcone("Images/bas.png");
-        gauche = chargerIcone("Images/gauche.png");
-        droite = chargerIcone("Images/droite.png");
+        icoHero = chargerIcone("Images/Droite.png");
+        haut = chargerIcone("Images/Haut.png");
+        bas = chargerIcone("Images/Bas.png");
+        gauche = chargerIcone("Images/Gauche.png");
+        droite = chargerIcone("Images/Droite.png");
         icoCaseNormale = chargerIcone("Images/Case.png");
         icoMur = chargerIcone("Images/Mur.png");
         icoVide = chargerIcone("Images/Vide.png");
@@ -152,6 +153,9 @@ public class VueControleur extends JFrame implements Observer {
                 }
                 else if (e instanceof Coffre) {
                     tabJLabel[x][y].setIcon(icoCoffre);
+                }
+                else if (e instanceof Vide) {
+                    tabJLabel[x][y].setIcon(icoVide);
                 }
             }
         }

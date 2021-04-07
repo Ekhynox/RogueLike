@@ -21,5 +21,4 @@ public class Porte extends EntiteStatique{
     public boolean ramassables() {
         return true;
     }
-
 }
