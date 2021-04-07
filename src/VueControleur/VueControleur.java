@@ -45,6 +45,8 @@ public class VueControleur extends JFrame implements Observer {
     private ImageIcon icoPorte;
     private ImageIcon icoCoffre;
     private ImageIcon icoVide;
+    private ImageIcon icoCaseUnique;
+    private ImageIcon icoFire;
     private JLabel[][] tabJLabel; // cases graphique (au moment du rafraichissement, chaque case va être associée à une icône, suivant ce qui est présent dans le modèle)
 
 
@@ -85,10 +87,11 @@ public class VueControleur extends JFrame implements Observer {
     }
 
     private void chargerLesIcones() {
-        haut = chargerIcone("Images/haut.png");
-        bas = chargerIcone("Images/bas.png");
-        gauche = chargerIcone("Images/gauche.png");
-        droite = chargerIcone("Images/droite.png");
+        icoHero = chargerIcone("Images/Haut.png");
+        haut = chargerIcone("Images/Haut.png");
+        bas = chargerIcone("Images/Bas.png");
+        gauche = chargerIcone("Images/Gauche.png");
+        droite = chargerIcone("Images/Droite.png");
         icoCaseNormale = chargerIcone("Images/Case.png");
         icoMur = chargerIcone("Images/Mur.png");
         icoVide = chargerIcone("Images/Vide.png");
@@ -96,6 +99,8 @@ public class VueControleur extends JFrame implements Observer {
         icoCapsules = chargerIcone("Images/Capsules.png");
         icoPorte = chargerIcone("Images/Porte.png");
         icoCoffre = chargerIcone("Images/Coffre.png");
+        icoCaseUnique = chargerIcone("Images/yellow_square.png");
+        icoFire = chargerIcone("Images/Fire.png");
     }
 
     private ImageIcon chargerIcone(String urlIcone) {
@@ -152,6 +157,14 @@ public class VueControleur extends JFrame implements Observer {
                 }
                 else if (e instanceof Coffre) {
                     tabJLabel[x][y].setIcon(icoCoffre);
+                }
+                else if (e instanceof DalleUnique) {
+                    if(((DalleUnique) e).traversable()) {
+                        tabJLabel[x][y].setIcon(icoCaseUnique);
+                    }
+                    else {
+                        tabJLabel[x][y].setIcon(icoFire);
+                    }
                 }
             }
         }

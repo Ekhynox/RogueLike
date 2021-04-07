@@ -36,6 +36,7 @@ public class Heros {
     public void droite() {
         if (traversable(x+1, y)) {
             x ++;
+            testDalleUnique(x, y);
         }
         else{
             ouvrirPorte(x+1, y);
@@ -51,10 +52,11 @@ public class Heros {
     public void gauche() {
         if (traversable(x-1, y)) {
             x --;
+            testDalleUnique(x, y);
         }
         else{
             if (traversable(x-2, y)){
-                y = y-2;
+                x = x-2;
             }
         }
         if(jeu.getEntite(x, y).ramassables()){
@@ -65,6 +67,7 @@ public class Heros {
     public void bas() {
         if (traversable(x, y+1)) {
             y ++;
+            testDalleUnique(x, y);
         }
         else{
             if (traversable(x, y+2)){
@@ -79,6 +82,7 @@ public class Heros {
     public void haut() {
         if (traversable(x, y-1)) {
             y --;
+            testDalleUnique(x, y);
         }
         else{
             if (traversable(x, y-2)){
@@ -102,11 +106,11 @@ public class Heros {
         EntiteStatique es = jeu.getEntite(x, y);
         if (es instanceof Cles) { // si on est sur une clef
             inv.addCles(); // ajout de clef
-            //jeu.addEntiteStatique(new CaseNormale(this), x, y); // on change la clef en case normale
+            jeu.addEntiteStatique(new CaseNormale(jeu), x, y); // on change la clef en case normale
         }
         if(es instanceof Capsules){ // si on est sur une capsule
             inv.addCapsules(); // ajout de clef
-            //jeu.addEntiteStatique(new CaseNormale(this), x, y); // on change la clef en case normale
+            jeu.addEntiteStatique(new CaseNormale(jeu), x, y); // on change la clef en case normale
         }
         if(es instanceof Coffre){ // si on est sur un coffre
             System.out.println("Coffre à coder"); // pas encore coder
@@ -122,6 +126,13 @@ public class Heros {
                 inv.removeCles(); //cles --
                 //Code du changement de salle
             }
+        }
+    }
+
+    private void testDalleUnique(int x, int y) {
+        EntiteStatique es = jeu.getEntite(x, y);
+        if(es instanceof DalleUnique) {
+            ((DalleUnique) es).setTraversable(false);
         }
     }
 }

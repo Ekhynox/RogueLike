@@ -65,7 +65,7 @@ public class Jeu extends Observable implements Runnable {
         addEntiteStatique(new Cles(this), (int)(Math.random() * (SIZE_X-2)+1), (int)(Math.random() * (SIZE_Y-3)+1));
         addEntiteStatique(new Capsules(this), (int)(Math.random() * (SIZE_X-2)+1), (int)(Math.random() * (SIZE_Y-3)+1));
         addEntiteStatique(new Coffre(this), (int)(Math.random() * (SIZE_X-2)+1), (int)(Math.random() * (SIZE_Y-3)+1));
-
+        addEntiteStatique(new DalleUnique(this), 5, 5);
         for (int x = 0; x < SIZE_X; x++) {
             for (int y = 0; y < SIZE_Y-1; y++) {
                 if (grilleEntitesStatiques[x][y] == null) {
