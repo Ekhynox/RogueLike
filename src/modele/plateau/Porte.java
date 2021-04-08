@@ -1,8 +1,14 @@
 package modele.plateau;
 
 public class Porte extends EntiteStatique{
-    private boolean Verrouillee = false;
-    public Porte(Jeu _jeu) { super(_jeu); }
+    private boolean Verrouillee;
+    private int salle;
+
+    public Porte(Jeu _jeu, int salle) {
+        super(_jeu);
+        this.Verrouillee = false;
+        this.salle = salle;
+    }
 
     public void setVerrouillee(boolean verrouillee) {
         this.Verrouillee = verrouillee;
@@ -10,6 +16,14 @@ public class Porte extends EntiteStatique{
 
     public boolean isVerrouillee() {
         return Verrouillee;
+    }
+
+    public int getSalle() {
+        return salle;
+    }
+
+    public void setSalle(int salle) {
+        this.salle = salle;
     }
 
     @Override

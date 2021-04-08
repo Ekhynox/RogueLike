@@ -27,6 +27,19 @@ public class Heros {
         return y;
     }
 
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setXY(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
     public Orientation getOri() {
         return ori;
     }
@@ -119,27 +132,17 @@ public class Heros {
 
     private void ramassable(int x, int y) {
         EntiteStatique es = jeu.getEntite(x, y);
-        if (es instanceof Cles) { // si on est sur une clef
-            inv.addCles(); // ajout de clef
+        if (es instanceof Cles) { // si on est sur une cle
+            inv.addCles(jeu); // ajout de clef
             jeu.addEntiteStatique(new CaseNormale(jeu), x, y); // on change la clef en case normale
         }
         if(es instanceof Capsules){ // si on est sur une capsule
-            inv.addCapsules(); // ajout de clef
-            jeu.addEntiteStatique(new CaseNormale(jeu), x, y); // on change la clef en case normale
+            inv.addCapsules(jeu); // ajout de capsule
+            jeu.addEntiteStatique(new CaseNormale(jeu), x, y); // on change la capsule en case normale
         }
         if(es instanceof Coffre){ // si on est sur un coffre
-            int random;
-            do {
-                random = (int)(Math.random() * 3 );
-                if(random == 0) {
-                    inv.addCles();
-                }
-                else if(random == 1) {
-                    inv.addCapsules();
-                }
-                //System.out.println(random);
-            }while(random == 2 ); // Si on a un coffre dans le coffre on recommence 
-            jeu.addEntiteStatique(new CaseNormale(jeu), x, y); // on change la clef en case normale
+            inv.addCoffre(jeu);
+            jeu.addEntiteStatique(new CaseNormale(jeu), x, y); // on change le coffre en case normale
         }
     }
 
@@ -148,7 +151,7 @@ public class Heros {
         if (es instanceof Porte) { // si on est sur une case vide
             if (inv.getNbCles() > 0) { // si on a la clef
                 ((Porte) es).setVerrouillee(true); // ouvre la porte
-                inv.removeCles(); //cles --
+                inv.removeCles(jeu); //cles --
                 //Code du changement de salle
             }
         }
@@ -161,8 +164,10 @@ public class Heros {
         }
     }
 
+    /*
     private void saut(int x, int y){
 
 
     }
+     */
 }

@@ -22,6 +22,7 @@ public class Jeu extends Observable implements Runnable {
 
     public Jeu() {
         initialisationDesEntites();
+
     }
 
     public Heros getHeros() {
@@ -35,6 +36,8 @@ public class Jeu extends Observable implements Runnable {
     public EntiteStatique[][] getGrille() {
         return grilleEntitesStatiques;
     }
+
+    public Jeu getJeu(){return this;}
 
 	public EntiteStatique getEntite(int x, int y) {
 		if (x < 0 || x >= SIZE_X || y < 0 || y >= SIZE_Y) {
@@ -61,7 +64,7 @@ public class Jeu extends Observable implements Runnable {
 
         addEntiteStatique(new Mur(this), 2, 6);
         addEntiteStatique(new Mur(this), 3, 6);
-        addEntiteStatique(new Porte(this), 19, 5);
+        addEntiteStatique(new Porte(this, 1), 19, 5);
         addEntiteStatique(new Cles(this), (int)(Math.random() * (SIZE_X-2)+1), (int)(Math.random() * (SIZE_Y-3)+1));
         addEntiteStatique(new Capsules(this), (int)(Math.random() * (SIZE_X-2)+1), (int)(Math.random() * (SIZE_Y-3)+1));
         addEntiteStatique(new Coffre(this), (int)(Math.random() * (SIZE_X-2)+1), (int)(Math.random() * (SIZE_Y-3)+1));
@@ -78,6 +81,7 @@ public class Jeu extends Observable implements Runnable {
                 }
             }
         }
+
     }
 
     public void start() {
@@ -96,7 +100,9 @@ public class Jeu extends Observable implements Runnable {
         }
     }
 
+
     protected void addEntiteStatique(EntiteStatique e, int x, int y) {
         grilleEntitesStatiques[x][y] = e;
     }
+
 }

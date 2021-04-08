@@ -25,19 +25,39 @@ public class Inventaire{
         this.nbCles = nbCles;
     }
 
-    public void addCles(){
+    public void addCles(Jeu jeu){
+        jeu.addEntiteStatique(new Cles(jeu), 0+nbCles, 10);
         this.nbCles++;
         System.out.println("nb cles = " + nbCles);
     }
-    public void addCapsules(){
+
+    public void addCapsules(Jeu jeu){
+        jeu.addEntiteStatique(new Capsules(jeu), 10+nbCapsules, 10);
         this.nbCapsules++;
         System.out.println("nb capsules = " + nbCapsules);
     }
-    public void removeCles(){
+
+    public void addCoffre(Jeu jeu){
+        int random;
+        do {
+            random = (int)(Math.random() * 3 );
+            if(random == 0) {
+                addCles(jeu);
+            }
+            else if(random == 1) {
+                addCapsules(jeu);
+            }
+            //System.out.println(random);
+        }while(random == 2 ); // Si on a un coffre dans le coffre on recommence
+    }
+
+    public void removeCles(Jeu jeu){
+        jeu.addEntiteStatique(new CaseNormale(jeu), nbCles-1, 10); // on change la clef en case normale
         this.nbCles--;
         System.out.println("nb cles = " + nbCles);
     }
-    public void removeCapsule(){
+    public void removeCapsule(Jeu jeu){
+        jeu.addEntiteStatique(new CaseNormale(jeu), 10+nbCapsules-1, 10); // on change la clef en case normale
         this.nbCapsules--;
         System.out.println("nb capsules = " + nbCapsules);
     }

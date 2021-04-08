@@ -13,8 +13,4 @@ public class CaseNormale extends EntiteStatique {
         return false;
     }
 
-    public void ajout(){
-        jeu.getHeros().getInventaire().addCles();
-    }
-
 }
