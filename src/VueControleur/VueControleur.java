@@ -111,6 +111,7 @@ public class VueControleur extends JFrame implements Observer {
                                 break;
                             }
                             jeu.getHeros().getInventaire().removeCapsule(jeu);
+                            jeu.getHeros().getInventaire().getInterface().removeCapsule(jeu);
                         }
                         break;
                 }

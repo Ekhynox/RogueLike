@@ -13,7 +13,7 @@ public class Heros {
     private int y;
     private Jeu jeu;
     private Orientation ori = new Orientation();
-    private Inventaire inv = new Inventaire();
+    private Inventaire inv = new Inventaire(jeu);
 
     public Inventaire getInventaire() {
         return inv;
@@ -163,11 +163,4 @@ public class Heros {
             ((DalleUnique) es).setTraversable(false);
         }
     }
-
-    /*
-    private void saut(int x, int y){
-
-
-    }
-     */
 }
