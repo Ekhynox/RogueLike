@@ -55,15 +55,15 @@ public class Salle {
                     case "h":
                         jeu.getHeros().setXY(j, i);
                     break;
+                    case "t":
+                        jeu.addEntiteStatique(new Vide(jeu), j, i);
+                    break;
                 }
             }
         }
         jeu.addEntiteStatique(new Cles(jeu), (int)(Math.random() * (SIZE_X-2)+1), (int)(Math.random() * (SIZE_Y-3)+1));
         jeu.addEntiteStatique(new Capsules(jeu), (int)(Math.random() * (SIZE_X-2)+1), (int)(Math.random() * (SIZE_Y-3)+1));
         jeu.addEntiteStatique(new Coffre(jeu), (int)(Math.random() * (SIZE_X-2)+1), (int)(Math.random() * (SIZE_Y-3)+1));
-        jeu.addEntiteStatique(new Vide(jeu), (int)(Math.random() * (SIZE_X-2)+1), (int)(Math.random() * (SIZE_Y-3)+1));
-        jeu.addEntiteStatique(new Vide(jeu), (int)(Math.random() * (SIZE_X-2)+1), (int)(Math.random() * (SIZE_Y-3)+1));
-        jeu.addEntiteStatique(new Vide(jeu), (int)(Math.random() * (SIZE_X-2)+1), (int)(Math.random() * (SIZE_Y-3)+1));
         for (int x = 0; x < SIZE_X; x++) {
             for (int y = 0; y < SIZE_Y-1; y++) {
                 if (jeu.getGrille()[x][y] == null) {
