@@ -17,10 +17,12 @@ public class Jeu extends Observable implements Runnable {
 
     private Heros heros;
     private Orientation orientation;
+    private Salle [] tabSalle;
 
     private EntiteStatique[][] grilleEntitesStatiques = new EntiteStatique[SIZE_X][SIZE_Y];
 
     public Jeu() {
+        tabSalle = new Salle[1];
         initialisationDesEntites();
     }
 
@@ -48,30 +50,8 @@ public class Jeu extends Observable implements Runnable {
 
     private void initialisationDesEntites() {
         heros = new Heros(this, 4, 4);
-
-        // murs extérieurs horizontaux
-        for (int x = 0; x < SIZE_X; x++) {
-            addEntiteStatique(new Mur(this), x, 0);
-            addEntiteStatique(new Mur(this), x, SIZE_Y-2);
-        }
-
-        // murs extérieurs verticaux
-        for (int y = 1; y < SIZE_Y-2; y++) {
-            addEntiteStatique(new Mur(this), 0, y);
-            addEntiteStatique(new Mur(this), SIZE_X-1, y);
-        }
-
-        addEntiteStatique(new Mur(this), 2, 6);
-        addEntiteStatique(new Mur(this), 3, 6);
-        addEntiteStatique(new Porte(this, 1), 19, 5);
-        addEntiteStatique(new Cles(this), (int)(Math.random() * (SIZE_X-2)+1), (int)(Math.random() * (SIZE_Y-3)+1));
-        addEntiteStatique(new Capsules(this), (int)(Math.random() * (SIZE_X-2)+1), (int)(Math.random() * (SIZE_Y-3)+1));
-        addEntiteStatique(new Coffre(this), (int)(Math.random() * (SIZE_X-2)+1), (int)(Math.random() * (SIZE_Y-3)+1));
-        addEntiteStatique(new DalleUnique(this), 5, 5);
-
-        addEntiteStatique(new Vide(this), (int)(Math.random() * (SIZE_X-2)+1), (int)(Math.random() * (SIZE_Y-3)+1));
-        addEntiteStatique(new Vide(this), (int)(Math.random() * (SIZE_X-2)+1), (int)(Math.random() * (SIZE_Y-3)+1));
-        addEntiteStatique(new Vide(this), (int)(Math.random() * (SIZE_X-2)+1), (int)(Math.random() * (SIZE_Y-3)+1));
+        tabSalle[0] = new Salle(this);
+        tabSalle[0].salle();
 
         for (int x = 0; x < SIZE_X; x++) {
             for (int y = 0; y < SIZE_Y-1; y++) {
@@ -97,7 +77,6 @@ public class Jeu extends Observable implements Runnable {
             }
         }
     }
-
 
     protected void addEntiteStatique(EntiteStatique e, int x, int y) {
         grilleEntitesStatiques[x][y] = e;
