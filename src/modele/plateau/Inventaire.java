@@ -3,18 +3,26 @@ package modele.plateau;
 public class Inventaire{
     private int nbCles;
     private int nbCapsules;
+    private Jeu jeu;
+    private Interface interf = new Interface(jeu);
 
-    public Inventaire(){
+    public Inventaire(Jeu jeu){
         nbCles = 0;
-        nbCapsules = 0;
+        nbCapsules = 2;
+    }
+
+    public Interface getInterface() {
+        return interf;
     }
 
     public int getNbCapsules() {
         return nbCapsules;
     }
 
-    public void setNbCapsules(int nbCapsules) {
-        this.nbCapsules = nbCapsules;
+    public void setNbCapsules() {
+        for(int i=0; i<nbCapsules; i++){
+            interf.addCapsules(jeu);
+        }
     }
 
     public int getNbCles() {
@@ -26,15 +34,13 @@ public class Inventaire{
     }
 
     public void addCles(Jeu jeu){
-        jeu.addEntiteStatique(new Cles(jeu), 0+nbCles, 10);
         this.nbCles++;
-        System.out.println("nb cles = " + nbCles);
+        interf.addCles(jeu);
     }
 
     public void addCapsules(Jeu jeu){
-        jeu.addEntiteStatique(new Capsules(jeu), 10+nbCapsules, 10);
         this.nbCapsules++;
-        System.out.println("nb capsules = " + nbCapsules);
+        interf.addCapsules(jeu);
     }
 
     public void addCoffre(Jeu jeu){
@@ -52,13 +58,12 @@ public class Inventaire{
     }
 
     public void removeCles(Jeu jeu){
-        jeu.addEntiteStatique(new CaseNormale(jeu), nbCles-1, 10); // on change la clef en case normale
         this.nbCles--;
-        System.out.println("nb cles = " + nbCles);
+        interf.removeCles(jeu);
     }
+
     public void removeCapsule(Jeu jeu){
-        jeu.addEntiteStatique(new CaseNormale(jeu), 10+nbCapsules-1, 10); // on change la clef en case normale
         this.nbCapsules--;
-        System.out.println("nb capsules = " + nbCapsules);
+        interf.removeCapsule(jeu);
     }
 }
