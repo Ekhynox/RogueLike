@@ -34,7 +34,7 @@ public class Salle {
         }
     }
 
-    public void salle(){
+    public void salle(int idSalle){
 
         for(int i=0;i<SIZE_Y;i++) {
             for(int j=0;j<SIZE_X;j++) {
@@ -50,7 +50,11 @@ public class Salle {
                         jeu.addEntiteStatique(new DalleUnique(jeu, true), j, i);
                     break;
                     case "p":
-                        jeu.addEntiteStatique(new Porte(jeu, 1), j, i);
+                        jeu.addEntiteStatique(new Porte(jeu, idSalle,false), j, i);
+                    break;
+                    case "P":
+                    System.out.println("ok");
+                        jeu.addEntiteStatique(new Porte(jeu, idSalle-2,true), j, i);
                     break;
                     case "h":
                         jeu.getHeros().setXY(j, i);
@@ -65,7 +69,7 @@ public class Salle {
         jeu.addEntiteStatique(new Capsules(jeu), (int)(Math.random() * (SIZE_X-2)+1), (int)(Math.random() * (SIZE_Y-3)+1));
         jeu.addEntiteStatique(new Coffre(jeu), (int)(Math.random() * (SIZE_X-2)+1), (int)(Math.random() * (SIZE_Y-3)+1));
         for (int x = 0; x < SIZE_X; x++) {
-            for (int y = 0; y < SIZE_Y-1; y++) {
+            for (int y = 0; y < SIZE_Y; y++) {
                 if (jeu.getGrille()[x][y] == null) {
                     jeu.addEntiteStatique(new CaseNormale(jeu), x, y);
                 }
