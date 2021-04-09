@@ -22,7 +22,6 @@ public class Jeu extends Observable implements Runnable {
 
     public Jeu() {
         initialisationDesEntites();
-
     }
 
     public Heros getHeros() {
@@ -81,7 +80,6 @@ public class Jeu extends Observable implements Runnable {
                 }
             }
         }
-
     }
 
     public void start() {

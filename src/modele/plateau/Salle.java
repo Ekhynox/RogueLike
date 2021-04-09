@@ -1,7 +1,6 @@
 package modele.plateau;
 
 public class Salle {
-
     public static final int SIZE_X = 20;
     public static final int SIZE_Y = 11;
     private Jeu jeu;
