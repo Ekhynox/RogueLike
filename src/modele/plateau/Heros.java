@@ -14,6 +14,7 @@ public class Heros {
     private Jeu jeu;
     private Orientation ori = new Orientation();
     private Inventaire inv = new Inventaire(jeu);
+    private Saut saut = new Saut(jeu);
 
     public Inventaire getInventaire() {
         return inv;
@@ -59,12 +60,7 @@ public class Heros {
         }
         else{
             ouvrirPorte(x + 1, y);
-            EntiteStatique es = jeu.getEntite(x+1, y);
-            if (es instanceof Vide) { // si on est sur une case vide
-                if (traversable(x+2, y)) {
-                    x = x + 2;
-                }
-            }
+            saut.sautDroite(this);
         }
    }
 
@@ -122,7 +118,7 @@ public class Heros {
         }
     }
 
-    private boolean traversable(int x, int y) {
+    public boolean traversable(int x, int y) {
         if (x >0 && x < jeu.SIZE_X && y > 0 && y < jeu.SIZE_Y) {
             return jeu.getEntite(x, y).traversable();
         } else {
@@ -130,7 +126,7 @@ public class Heros {
         }
     }
 
-    private void ramassable(int x, int y) {
+    protected void ramassable(int x, int y) {
         EntiteStatique es = jeu.getEntite(x, y);
         if (es instanceof Cles) { // si on est sur une cle
             inv.addCles(jeu); // ajout de clef
