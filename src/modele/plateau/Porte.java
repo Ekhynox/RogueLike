@@ -4,9 +4,9 @@ public class Porte extends EntiteStatique{
     private boolean Verrouillee;
     private int salle;
 
-    public Porte(Jeu _jeu, int salle) {
+    public Porte(Jeu _jeu, int salle, boolean verouiller) {
         super(_jeu);
-        this.Verrouillee = false;
+        this.Verrouillee = verouiller;
         this.salle = salle;
     }
 

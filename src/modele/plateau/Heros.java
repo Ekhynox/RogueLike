@@ -57,6 +57,7 @@ public class Heros {
             x ++;
             testDalleUnique(x, y);
             ramassable(x,y);
+            isPorte(x,y);
         }
         else{
             ouvrirPorte(x + 1, y);
@@ -70,6 +71,7 @@ public class Heros {
             x --;
             testDalleUnique(x, y);
             ramassable(x,y);
+            isPorte(x,y);
         }
         else{
             ouvrirPorte(x-1, y);
@@ -88,6 +90,7 @@ public class Heros {
             y ++;
             testDalleUnique(x, y);
             ramassable(x,y);
+            isPorte(x,y);
         }
         else{
             ouvrirPorte(x, y+1);
@@ -106,6 +109,7 @@ public class Heros {
             y --;
             testDalleUnique(x, y);
             ramassable(x,y);
+            isPorte(x,y);
         }
         else{
             ouvrirPorte(x, y-1);
@@ -139,6 +143,13 @@ public class Heros {
         if(es instanceof Coffre){ // si on est sur un coffre
             inv.addCoffre(jeu);
             jeu.addEntiteStatique(new CaseNormale(jeu), x, y); // on change le coffre en case normale
+        }
+    }
+
+    private void isPorte(int x, int y) {
+        EntiteStatique es = jeu.getEntite(x, y);
+        if(es instanceof Porte) {
+            jeu.prochaineSalle(((Porte)es).getSalle() );
         }
     }
 
