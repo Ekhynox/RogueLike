@@ -85,25 +85,25 @@ public class VueControleur extends JFrame implements Observer {
                         if(jeu.getHeros().getInventaire().getNbCapsules() > 0) {
                             EntiteStatique f;
                             switch (jeu.getHeros().getOri().getOri()) {
-                                case 0:
+                                case Nord:
                                     f = jeu.getEntite(jeu.getHeros().getX(), jeu.getHeros().getY() -1) ;
                                     if(f instanceof DalleUnique) {
                                         ((DalleUnique)f).setTraversable(true);
                                     }
                                 break;
-                                case 1:
+                                case Sud:
                                     f = jeu.getEntite(jeu.getHeros().getX(), jeu.getHeros().getY() +1) ;
                                     if(f instanceof DalleUnique) {
                                         ((DalleUnique)f).setTraversable(true);
                                     }
                                 break;
-                                case 2:
+                                case Ouest:
                                     f = jeu.getEntite(jeu.getHeros().getX() -1, jeu.getHeros().getY()) ;
                                     if(f instanceof DalleUnique) {
                                         ((DalleUnique)f).setTraversable(true);
                                     }
                                 break;
-                                case 3:
+                                case Est:
                                     f = jeu.getEntite(jeu.getHeros().getX() +1, jeu.getHeros().getY()) ;
                                     if(f instanceof DalleUnique) {
                                         ((DalleUnique)f).setTraversable(true);

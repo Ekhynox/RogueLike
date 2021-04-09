@@ -51,15 +51,9 @@ public class Jeu extends Observable implements Runnable {
     private void initialisationDesEntites() {
         heros = new Heros(this, 4, 4);
         tabSalle[0] = new Salle(this);
+        tabSalle[0].lireFichier("salle1.txt");
         tabSalle[0].salle();
-
-        for (int x = 0; x < SIZE_X; x++) {
-            for (int y = 0; y < SIZE_Y-1; y++) {
-                if (grilleEntitesStatiques[x][y] == null) {
-                    grilleEntitesStatiques[x][y] = new CaseNormale(this);
-                }
-            }
-        }
+        
     }
 
     public void start() {

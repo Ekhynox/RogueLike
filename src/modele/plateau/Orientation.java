@@ -1,33 +1,38 @@
 package modele.plateau;
 
 public class Orientation{
-    private int ori;
-
+    
+    public enum direction {
+        Nord, Sud , Est, Ouest 
+    }
+    
+    private direction ori;
+    
     public Orientation() {
-        ori =0;
+        ori = direction.Nord;
     }
 
-    public int getOri() {
+    public direction getOri() {
         return ori;
     }
 
     public void droite() {
-        ori = 3;
+        ori = direction.Est;
         System.out.println("droite");
     }
 
     public void gauche() {
-        ori = 2;
+        ori = direction.Ouest;
         System.out.println("gauche");
     }
 
     public void bas() {
-        ori = 1;
+        ori = direction.Sud;
         System.out.println("bas");
     }
 
     public void haut() {
-        ori = 0;
+        ori = direction.Nord;
         System.out.println("haut");
     }
 }

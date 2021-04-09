@@ -2,7 +2,7 @@ package modele.plateau;
 
 public class DalleUnique extends EntiteStatique {
     private boolean traversable = true;
-    public DalleUnique(Jeu _jeu) { super(_jeu); }
+    public DalleUnique(Jeu _jeu,boolean feu) { super(_jeu); traversable = feu; }
 
     public void setTraversable(boolean traversable) {
         this.traversable = traversable;
