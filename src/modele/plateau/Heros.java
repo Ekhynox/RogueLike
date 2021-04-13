@@ -93,13 +93,13 @@ public class Heros {
             x--;
             testDalleUnique(x, y);
             ramassable(x,y);
-            porteOuverte(x, y);
         }
         else {
             if(ori.getOri() != ori.gauche()) {
                 ori.setOri(ori.gauche());
             }
             else {
+                porteOuverte(x -1, y);
                 ouvrirPorte(x - 1, y);
                 saut.gauche();
             }
@@ -138,7 +138,6 @@ public class Heros {
             y--;
             testDalleUnique(x, y);
             ramassable(x,y);
-            porteOuverte(x, y);
         }
         else {
             if(ori.getOri() != ori.haut()) {
@@ -146,6 +145,7 @@ public class Heros {
             }
             else {
             ouvrirPorte(x, y - 1);
+            porteOuverte(x, y - 1);
             saut.haut();
             }
         }
