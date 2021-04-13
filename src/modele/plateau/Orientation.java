@@ -12,27 +12,33 @@ public class Orientation{
         ori = direction.Nord;
     }
 
+    //retourne l'oritentation du personnage
     public direction getOri() {
         return ori;
     }
 
-    public void droite() {
-        ori = direction.Est;
-        System.out.println("droite");
+    //Modifier l'orientation du personnage
+    public void setOri(direction dir){
+        ori = dir;
     }
 
-    public void gauche() {
-        ori = direction.Ouest;
-        System.out.println("gauche");
+    //retourne l'orientation a droite
+    public direction droite() {
+        return direction.Est;
     }
 
-    public void bas() {
-        ori = direction.Sud;
-        System.out.println("bas");
+    //retourne l'orientation a gauche
+    public direction gauche() {
+        return direction.Ouest;
     }
 
-    public void haut() {
-        ori = direction.Nord;
-        System.out.println("haut");
+    //retourne l'orientation en bas
+    public direction bas() {
+        return direction.Sud;
+    }
+
+    //retourne l'orientation en haut
+    public direction haut() {
+        return direction.Nord;
     }
 }
