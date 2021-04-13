@@ -16,35 +16,7 @@ public class Heros {
     private Inventaire inv;
     private Saut saut;
 
-    public Inventaire getInventaire() {
-        return inv;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setXY(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public Orientation getOri() {
-        return ori;
-    }
-
+    //Constructeur
     public Heros(Jeu _jeu, int _x, int _y) {
         jeu = _jeu;
         x = _x;
@@ -54,6 +26,46 @@ public class Heros {
         ori = new Orientation();
     }
 
+    //Retourne l'inventaire
+    public Inventaire getInventaire() {
+        return inv;
+    }
+
+    //Retourne la position en X du personnage
+    public int getX() {
+        return x;
+    }
+
+    //Retourne la position en Y du personnage
+    public int getY() {
+        return y;
+    }
+
+    //Modifier la position en X du personnage
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    //Modifier la position en Y du personnage
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    //Modifier la position en X,Y du personnage
+    public void setXY(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    //retourne l'orientation
+    public Orientation getOri() {
+        return ori;
+    }
+
+    //Deplacement vers la droite
+    //si la  case est traversable, déplacement sur la case, on regarde si un il y a un objet à ramasser, on regarde s'il y a une porte.
+    //si la case n'est pas traversable et si le personnage n'est pas orienté face à l'obstacle on modifie l'orientation du personnage.
+    //si le personnage est orienté face à l'obstacle, on regarde si c'est un trou ou une porte;
     public void droite() {
         if (traversable(x + 1, y)) {
             x++;
@@ -72,6 +84,10 @@ public class Heros {
         }
    }
 
+    //Deplacement vers la Gauche
+    //si la  case est traversable, déplacement sur la case, on regarde si un il y a un objet à ramasser, on regarde s'il y a une porte.
+    //si la case n'est pas traversable et si le personnage n'est pas orienté face à l'obstacle on modifie l'orientation du personnage.
+    //si le personnage est orienté face à l'obstacle, on regarde si c'est un trou ou une porte;
     public void gauche() {
         if (traversable(x - 1, y)) {
             x--;
@@ -90,6 +106,10 @@ public class Heros {
         }
     }
 
+    //Deplacement vers le bas
+    //si la  case est traversable, déplacement sur la case, on regarde si un il y a un objet à ramasser, on regarde s'il y a une porte.
+    //si la case n'est pas traversable et si le personnage n'est pas orienté face à l'obstacle on modifie l'orientation du personnage.
+    //si le personnage est orienté face à l'obstacle, on regarde si c'est un trou ou une porte;
     public void bas() {
         if (traversable(x, y + 1)) {
             y++;
@@ -108,7 +128,12 @@ public class Heros {
         }
     }
 
+    //Deplacement vers la haut
+    //si la  case est traversable, déplacement sur la case, on regarde si un il y a un objet à ramasser, on regarde s'il y a une porte.
+    //si la case n'est pas traversable et si le personnage n'est pas orienté face à l'obstacle on modifie l'orientation du personnage.
+    //si le personnage est orienté face à l'obstacle, on regarde si c'est un trou ou une porte;
     public void haut() {
+
         if (traversable(x, y - 1)) {
             y--;
             testDalleUnique(x, y);
@@ -117,7 +142,7 @@ public class Heros {
         }
         else {
             if(ori.getOri() != ori.haut()) {
-                ori.setOri(ori.haut());
+                ori.setOri(ori.haut()); //
             }
             else {
             ouvrirPorte(x, y - 1);
@@ -126,6 +151,7 @@ public class Heros {
         }
     }
 
+    //Retourne si la case est traversable
     public boolean traversable(int x, int y) {
         if (x >0 && x < jeu.SIZE_X && y > 0 && y < jeu.SIZE_Y) {
             return jeu.getEntite(x, y).traversable();
@@ -134,21 +160,25 @@ public class Heros {
         }
     }
 
+    //Retourne si la case est ramassable
+    //En fonction de l'élément ramasable, incremente l'inventaire et acutualise l'interface
+    //Puis on change l'élément en case normale
     protected void ramassable(int x, int y) {
         EntiteStatique es = jeu.getEntite(x, y);
-        if (es instanceof Cles) { // si on est sur une cle
-            inv.addCles(jeu); // ajout de clef
-            jeu.addEntiteStatique(new CaseNormale(jeu), x, y); // on change la clef en case normale
+        if (es instanceof Cles) {
+            inv.addCles(jeu);
+            jeu.addEntiteStatique(new CaseNormale(jeu), x, y);
         }
-        if(es instanceof Capsules){ // si on est sur une capsule
-            inv.addCapsules(jeu); // ajout de capsule
-            jeu.addEntiteStatique(new CaseNormale(jeu), x, y); // on change la capsule en case normale
+        if(es instanceof Capsules){
+            inv.addCapsules(jeu); //
+            jeu.addEntiteStatique(new CaseNormale(jeu), x, y);
         }
-        if(es instanceof Coffre){ // si on est sur un coffre
+        if(es instanceof Coffre){
             inv.addCoffre(jeu);
-            jeu.addEntiteStatique(new CaseNormale(jeu), x, y); // on change le coffre en case normale
+            jeu.addEntiteStatique(new CaseNormale(jeu), x, y);
         }
     }
+
 
     private void isPorte(int x, int y) {
         EntiteStatique es = jeu.getEntite(x, y);
@@ -157,16 +187,20 @@ public class Heros {
         }
     }
 
+    //Si la prochaine case est une porte
+    //Et si on a la clé de la porte, déverrouille la porte
+    //Puis enleve une clé de l'inventaire et met a jour l'interface
     private void ouvrirPorte(int x, int y){
         EntiteStatique es = jeu.getEntite(x, y);
-        if (es instanceof Porte) { // si on est sur une case vide
-            if (inv.getNbCles() > 0) { // si on a la clef
-                ((Porte) es).setVerrouillee(true); // ouvre la porte
-                inv.removeCles(jeu); //cles --
+        if (es instanceof Porte) {
+            if (inv.getNbCles() > 0) {
+                ((Porte) es).setVerrouillee(true);
+                inv.removeCles(jeu);
                 //Code du changement de salle
             }
         }
     }
+
 
     private void testDalleUnique(int x, int y) {
         EntiteStatique es = jeu.getEntite(x, y);
