@@ -12,9 +12,9 @@ public class Heros {
     private int x;
     private int y;
     private Jeu jeu;
-    private Orientation ori = new Orientation();
-    private Inventaire inv = new Inventaire(jeu);
-    private Saut saut = new Saut(jeu);
+    private Orientation ori;
+    private Inventaire inv;
+    private Saut saut;
 
     public Inventaire getInventaire() {
         return inv;
@@ -49,75 +49,79 @@ public class Heros {
         jeu = _jeu;
         x = _x;
         y = _y;
+        saut = new Saut(this, _jeu);
+        inv = new Inventaire(jeu);
+        ori = new Orientation();
     }
 
     public void droite() {
-        ori.droite();
-        if (traversable(x+1, y)) {
-            x ++;
+        if (traversable(x + 1, y)) {
+            x++;
             testDalleUnique(x, y);
-            ramassable(x,y);
-            isPorte(x,y);
+            ramassable(x, y);
+            isPorte(x, y);
         }
-        else{
-            ouvrirPorte(x + 1, y);
-            saut.sautDroite(this);
+        else {
+            if(ori.getOri() != ori.droite()) {
+                ori.setOri(ori.droite());
+            }
+            else{
+                ouvrirPorte(x + 1, y);
+                saut.droite();
+            }
         }
    }
 
     public void gauche() {
-        ori.gauche();
-        if (traversable(x-1, y)) {
-            x --;
+        if (traversable(x - 1, y)) {
+            x--;
             testDalleUnique(x, y);
-            ramassable(x,y);
-            isPorte(x,y);
+            ramassable(x, y);
+            isPorte(x, y);
         }
-        else{
-            ouvrirPorte(x-1, y);
-            EntiteStatique es = jeu.getEntite(x-1, y);
-            if (es instanceof Vide) { // si on est sur une case vide
-                if (traversable(x-2, y)) {
-                    x = x - 2;
-                }
+        else {
+            if(ori.getOri() != ori.gauche()) {
+                ori.setOri(ori.gauche());
+            }
+            else {
+                ouvrirPorte(x - 1, y);
+                saut.gauche();
             }
         }
     }
 
     public void bas() {
-        ori.bas();
-        if (traversable(x, y+1)) {
-            y ++;
+        if (traversable(x, y + 1)) {
+            y++;
             testDalleUnique(x, y);
-            ramassable(x,y);
-            isPorte(x,y);
+            ramassable(x, y);
+            isPorte(x, y);
         }
-        else{
-            ouvrirPorte(x, y+1);
-            EntiteStatique es = jeu.getEntite(x, y+1);
-            if (es instanceof Vide) { // si on est sur une case vide
-                if (traversable(x, y+2)) {
-                    y = y + 2;
-                }
+        else {
+            if(ori.getOri() != ori.bas()) {
+                ori.setOri(ori.bas());
+            }
+            else {
+                ouvrirPorte(x, y + 1);
+                saut.bas();
             }
         }
     }
 
     public void haut() {
-        ori.haut();
-        if (traversable(x, y-1)) {
-            y --;
+        if (traversable(x, y - 1)) {
+            y--;
             testDalleUnique(x, y);
-            ramassable(x,y);
-            isPorte(x,y);
+            ramassable(x, y);
+            isPorte(x, y);
         }
-        else{
-            ouvrirPorte(x, y-1);
-            EntiteStatique es = jeu.getEntite(x, y-1);
-            if (es instanceof Vide) { // si on est sur une case vide
-                if (traversable(x, y-2)) {
-                    y = y-2;
-                }
+        else {
+            if(ori.getOri() != ori.haut()) {
+                ori.setOri(ori.haut());
+            }
+            else {
+            ouvrirPorte(x, y - 1);
+            saut.haut();
             }
         }
     }

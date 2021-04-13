@@ -16,23 +16,23 @@ public class Orientation{
         return ori;
     }
 
-    public void droite() {
-        ori = direction.Est;
-        System.out.println("droite");
+    public void setOri(direction dir){
+        ori = dir;
     }
 
-    public void gauche() {
-        ori = direction.Ouest;
-        System.out.println("gauche");
+    public direction droite() {
+        return direction.Est;
     }
 
-    public void bas() {
-        ori = direction.Sud;
-        System.out.println("bas");
+    public direction gauche() {
+        return direction.Ouest;
     }
 
-    public void haut() {
-        ori = direction.Nord;
-        System.out.println("haut");
+    public direction bas() {
+        return direction.Sud;
+    }
+
+    public direction haut() {
+        return direction.Nord;
     }
 }
