@@ -10,12 +10,12 @@ public class Interface {
     }
 
     public void addCles(Jeu jeu){
-        jeu.addEntiteStatique(new Cles(jeu), 0+nbCles, 10);
+        jeu.addEntiteStatique(new Cles(jeu,0), 0+nbCles, 10);
         this.nbCles++;
     }
 
     public void addCapsules(Jeu jeu){
-        jeu.addEntiteStatique(new Capsules(jeu), 10+nbCapsules, 10);
+        jeu.addEntiteStatique(new Capsules(jeu,0), 10+nbCapsules, 10);
         this.nbCapsules++;
     }
 
@@ -24,7 +24,9 @@ public class Interface {
         this.nbCles--;
     }
     public void removeCapsule(Jeu jeu){
-        jeu.addEntiteStatique(new CaseNormale(jeu), 10+nbCapsules-1, 10); // on change la clef en case normale
-        this.nbCapsules--;
+        if(nbCapsules >0) {
+            jeu.addEntiteStatique(new CaseNormale(jeu), 10+nbCapsules-1, 10); // on change la clef en case normale
+            this.nbCapsules--;
+        }
     }
 }

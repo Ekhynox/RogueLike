@@ -1,7 +1,8 @@
 package modele.plateau;
 
 public class Capsules extends EntiteStatique{
-    public Capsules(Jeu _jeu) { super(_jeu); }
+    private int salle;
+    public Capsules(Jeu _jeu, int salle) { super(_jeu); this.salle = salle;}
 
     @Override
     public boolean traversable() {
@@ -11,6 +12,10 @@ public class Capsules extends EntiteStatique{
     @Override
     public boolean ramassables() {
         return true;
+    }
+
+    public int getSalle() {
+        return salle;
     }
 }
 

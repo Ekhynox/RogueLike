@@ -38,6 +38,10 @@ public class Jeu extends Observable implements Runnable {
         return grilleEntitesStatiques;
     }
 
+    public Salle getTabSalle(int i) {
+        return tabSalle[i];
+    }
+
     public Jeu getJeu(){return this;}
 
 	public EntiteStatique getEntite(int x, int y) {
@@ -62,7 +66,7 @@ public class Jeu extends Observable implements Runnable {
 
     public void prochaineSalle(int i) {
         for (int x = 0; x < SIZE_X; x++) {
-            for (int y = 0; y < SIZE_Y; y++) {
+            for (int y = 0; y < SIZE_Y-1; y++) {
                     addEntiteStatique(new CaseNormale(this), x, y);
             }
         }

@@ -4,11 +4,15 @@ public class Inventaire{
     private int nbCles;
     private int nbCapsules;
     private Jeu jeu;
-    private Interface interf = new Interface(jeu);
+    private Interface interf;
 
-    public Inventaire(Jeu jeu){
+    public Inventaire(Jeu jeu_){
+        this.jeu=jeu_;
+        interf = new Interface(jeu);
         nbCles = 0;
-        nbCapsules = 2;
+        for(int i=0;i<2;i++) {
+            addCapsules(jeu);
+        }
     }
 
     public Interface getInterface() {
@@ -19,9 +23,12 @@ public class Inventaire{
         return nbCapsules;
     }
 
-    public void setNbCapsules() {
-        for(int i=0; i<nbCapsules; i++){
-            interf.addCapsules(jeu);
+    public void setNbCapsules(Jeu jeu,int capsule) {
+        while(nbCapsules > 0) {
+            removeCapsule(jeu);
+        }
+        for(int i=0;i<capsule;i++) {
+            addCapsules(jeu);
         }
     }
 

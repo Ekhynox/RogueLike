@@ -87,31 +87,41 @@ public class VueControleur extends JFrame implements Observer {
                             switch (jeu.getHeros().getOri().getOri()) {
                                 case Nord:
                                     f = jeu.getEntite(jeu.getHeros().getX(), jeu.getHeros().getY() -1) ;
-                                    if(f instanceof DalleUnique) {
+                                    if(f instanceof DalleUnique && (((DalleUnique)f).isTraversable() == false)) {
                                         ((DalleUnique)f).setTraversable(true);
+                                        jeu.getHeros().getInventaire().removeCapsule(jeu);
+                                        jeu.getHeros().getInventaire().getInterface().removeCapsule(jeu);
+                                        jeu.getTabSalle(((DalleUnique)f).getSalle()-1).modifierCaseUnique(jeu.getHeros().getX() ,jeu.getHeros().getY()-1,true);
                                     }
                                 break;
                                 case Sud:
                                     f = jeu.getEntite(jeu.getHeros().getX(), jeu.getHeros().getY() +1) ;
-                                    if(f instanceof DalleUnique) {
+                                    if(f instanceof DalleUnique && (((DalleUnique)f).isTraversable() == false)) {
                                         ((DalleUnique)f).setTraversable(true);
+                                        jeu.getHeros().getInventaire().removeCapsule(jeu);
+                                        jeu.getHeros().getInventaire().getInterface().removeCapsule(jeu);
+                                        jeu.getTabSalle(((DalleUnique)f).getSalle()-1).modifierCaseUnique(jeu.getHeros().getX(),jeu.getHeros().getY()+1,true);
                                     }
                                 break;
                                 case Ouest:
                                     f = jeu.getEntite(jeu.getHeros().getX() -1, jeu.getHeros().getY()) ;
-                                    if(f instanceof DalleUnique) {
+                                    if(f instanceof DalleUnique && (((DalleUnique)f).isTraversable() == false) ) {
                                         ((DalleUnique)f).setTraversable(true);
+                                        jeu.getHeros().getInventaire().removeCapsule(jeu);
+                                        jeu.getHeros().getInventaire().getInterface().removeCapsule(jeu);
+                                        jeu.getTabSalle(((DalleUnique)f).getSalle()-1).modifierCaseUnique(jeu.getHeros().getX() -1,jeu.getHeros().getY(),true);
                                     }
                                 break;
                                 case Est:
                                     f = jeu.getEntite(jeu.getHeros().getX() +1, jeu.getHeros().getY()) ;
-                                    if(f instanceof DalleUnique) {
+                                    if(f instanceof DalleUnique && (((DalleUnique)f).isTraversable() == false)) {
                                         ((DalleUnique)f).setTraversable(true);
+                                        jeu.getHeros().getInventaire().removeCapsule(jeu);
+                                        jeu.getHeros().getInventaire().getInterface().removeCapsule(jeu);
+                                        jeu.getTabSalle(((DalleUnique)f).getSalle()-1).modifierCaseUnique(jeu.getHeros().getX() +1,jeu.getHeros().getY(),true);
                                     }
                                 break;
                             }
-                            jeu.getHeros().getInventaire().removeCapsule(jeu);
-                            jeu.getHeros().getInventaire().getInterface().removeCapsule(jeu);
                         }
                         break;
                 }

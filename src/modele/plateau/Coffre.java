@@ -1,7 +1,8 @@
 package modele.plateau;
 
 public class Coffre extends EntiteStatique{
-    public Coffre(Jeu _jeu) { super(_jeu); }
+    private int salle;
+    public Coffre(Jeu _jeu, int salle) { super(_jeu); this.salle=salle; }
 
     @Override
     public boolean traversable() {
@@ -10,5 +11,9 @@ public class Coffre extends EntiteStatique{
     @Override
     public boolean ramassables() {
         return true;
+    }
+
+    public int getSalle() {
+        return salle;
     }
 }
