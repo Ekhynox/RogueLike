@@ -84,18 +84,20 @@ public class VueControleur extends JFrame implements Observer {
                     case KeyEvent.VK_C:
                         if(jeu.getHeros().getInventaire().getNbCapsules() > 0) {
                             EntiteStatique f;
-                            switch (jeu.getHeros().getOri().getOri()) {
+                            switch (jeu.getHeros().getOri().getOri()) { // On regarde qu'elle orientation à le personnage 
                                 case Nord:
-                                    f = jeu.getEntite(jeu.getHeros().getX(), jeu.getHeros().getY() -1) ;
-                                    if(f instanceof DalleUnique && (((DalleUnique)f).isTraversable() == false)) {
+                                    f = jeu.getEntite(jeu.getHeros().getX(), jeu.getHeros().getY() -1); // On récupere l'entite dans la direction du personnage
+                                    if(f instanceof DalleUnique && (((DalleUnique)f).isTraversable() == false)) { 
+                                        // On teste si c'est une dalleUnique et qu'elle est en feu pour ne pas gaspiller de capsule
                                         ((DalleUnique)f).setTraversable(true);
                                         jeu.getHeros().getInventaire().removeCapsule(jeu);
                                         jeu.getHeros().getInventaire().getInterface().removeCapsule(jeu);
                                         jeu.getTabSalle(((DalleUnique)f).getSalle()-1).modifierCaseUnique(jeu.getHeros().getX() ,jeu.getHeros().getY()-1,true);
+                                        // on enregistre sur la carte le nouvelle état de la dalle unique
                                     }
                                 break;
                                 case Sud:
-                                    f = jeu.getEntite(jeu.getHeros().getX(), jeu.getHeros().getY() +1) ;
+                                    f = jeu.getEntite(jeu.getHeros().getX(), jeu.getHeros().getY() +1);
                                     if(f instanceof DalleUnique && (((DalleUnique)f).isTraversable() == false)) {
                                         ((DalleUnique)f).setTraversable(true);
                                         jeu.getHeros().getInventaire().removeCapsule(jeu);
@@ -104,7 +106,7 @@ public class VueControleur extends JFrame implements Observer {
                                     }
                                 break;
                                 case Ouest:
-                                    f = jeu.getEntite(jeu.getHeros().getX() -1, jeu.getHeros().getY()) ;
+                                    f = jeu.getEntite(jeu.getHeros().getX() -1, jeu.getHeros().getY());
                                     if(f instanceof DalleUnique && (((DalleUnique)f).isTraversable() == false) ) {
                                         ((DalleUnique)f).setTraversable(true);
                                         jeu.getHeros().getInventaire().removeCapsule(jeu);
@@ -113,7 +115,7 @@ public class VueControleur extends JFrame implements Observer {
                                     }
                                 break;
                                 case Est:
-                                    f = jeu.getEntite(jeu.getHeros().getX() +1, jeu.getHeros().getY()) ;
+                                    f = jeu.getEntite(jeu.getHeros().getX() +1, jeu.getHeros().getY());
                                     if(f instanceof DalleUnique && (((DalleUnique)f).isTraversable() == false)) {
                                         ((DalleUnique)f).setTraversable(true);
                                         jeu.getHeros().getInventaire().removeCapsule(jeu);

@@ -186,14 +186,18 @@ public class Heros {
         EntiteStatique es = jeu.getEntite(x, y);
         if(es instanceof Porte) {
             if(((Porte)es).isVerrouillee()) {
-                if(!((Porte)es).isSerrure()) {
-                jeu.getTabSalle(((Porte)es).getSalle()+1).modifierCoordPerso(x,y);
+                // Ici que pour les portes qui n'ont pas besoin de clef pour ceux qui on besoin de clef => fct ouvrirPorte
+                if(!((Porte)es).isSerrure()) { 
+                // Ce if est là pour différencier un porte qui amene à la prochaine salle ou une porte qui amene à la salle précedente
+                // Les portes avec serrure sont ceux qui amene à la suite alors que celle qui n'ont plus de serrure nous permet de retourner dans le niveau precedent
+                    jeu.getTabSalle(((Porte)es).getSalle()+1).modifierCoordPerso(x,y);
                 }
                 else {
                     jeu.getTabSalle(((Porte)es).getSalle()-1).modifierCoordPerso(x,y);
+                    // On sauvegarde la position du personnage dans la salle où on est 
                 }
-                jeu.prochaineSalle(((Porte)es).getSalle());
-                inv.setNbCapsules(jeu,2);
+                jeu.prochaineSalle(((Porte)es).getSalle()); // On recupere un variable qui donne la prochaine salle à afficher
+                inv.setNbCapsules(jeu,2); // 2 capsule par salle (recharge)
                 }
         }
     } 
@@ -210,7 +214,9 @@ public class Heros {
                 inv.removeCles(jeu);
                 //Code du changement de salle
                 jeu.getTabSalle(((Porte)es).getSalle()-1).modifierCoordPerso(x,y);
+                // Sauvegarde des coordonnées du personnage dans la salle
                 jeu.getTabSalle(((Porte)es).getSalle()-1).modifierCasePorte(x,y);
+                // On change la porte en une porte qui n'a plus besoin de clef pour etre passe
                 jeu.prochaineSalle(((Porte)es).getSalle());
                 inv.setNbCapsules(jeu,2);
                 }
@@ -218,12 +224,14 @@ public class Heros {
         }
     }
 
-
+    // Si on veux passer une dalle unique il faut qu'elle ne soit pas en feu
+    // Si elle est traversable on la passe puis elle devient du feu qui n'est plus traversable
     private void testDalleUnique(int x, int y) {
         EntiteStatique es = jeu.getEntite(x, y);
         if(es instanceof DalleUnique) {
             ((DalleUnique) es).setTraversable(false);
             jeu.getTabSalle(((DalleUnique)es).getSalle()-1).modifierCaseUnique(x,y,false);
+            // On modifie la case car elle devenue en feu
         }
     }
 }

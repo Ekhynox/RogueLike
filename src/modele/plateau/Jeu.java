@@ -53,6 +53,7 @@ public class Jeu extends Observable implements Runnable {
 	}
 
     private void initialisationDesEntites() {
+        // Ici on définit le nombre de niveau que l'ont veut qui correspond aux nombres de fichiers
         heros = new Heros(this, 4, 4);
         tabSalle[0] = new Salle(this);
         tabSalle[1] = new Salle(this);
@@ -60,16 +61,18 @@ public class Jeu extends Observable implements Runnable {
         tabSalle[0].lireFichier("salle1.txt");
         tabSalle[1].lireFichier("salle2.txt");
         tabSalle[2].lireFichier("salle3.txt");
-        tabSalle[0].salle(1);
+        tabSalle[0].salle(1); // On charge la première salle
         
     }
 
+    // Procédure qui permettra le chargement des salles
     public void prochaineSalle(int i) {
         for (int x = 0; x < SIZE_X; x++) {
             for (int y = 0; y < SIZE_Y-1; y++) {
                     addEntiteStatique(new CaseNormale(this), x, y);
             }
         }
+        // Avant d'appeller la fonction qui permet d'afficher la prochaine salle on met que des caseNormale pour faire table rase
         tabSalle[i].salle(i+1);
     }
 
