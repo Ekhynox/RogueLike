@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
+import javax.swing.SizeSequence;
+
 
 public class Salle {
     public static final int SIZE_X = 20;
@@ -58,12 +60,43 @@ public class Salle {
         }
     }
 
+    public void modifierCoordPerso(int x, int y) {
+        int xPerso = jeu.getHeros().getX();
+        int yPerso = jeu.getHeros().getY();
+        int xAncienPerso;
+        int yAncienPerso;
+        for(int i=0;i<SIZE_Y -1;i++) {
+            for(int j=0;j<SIZE_X;j++) {
+                if(salle.subSequence(j + i*SIZE_X , j + i*SIZE_X +1).equals("h")) {
+                    xAncienPerso = j;
+                    yAncienPerso = i;
+                    String tmp = salle;
+                    salle = tmp.substring(0,xAncienPerso + yAncienPerso*SIZE_X) + "_" + tmp.substring(xAncienPerso + yAncienPerso*SIZE_X+1);
+                }
+            }
+        }
+        //if(salle.subSequence(x + y*SIZE_X, x + y*SIZE_X +1).equals("p") || salle.subSequence(x + y*SIZE_X, x + y*SIZE_X +1).equals("D") ) {
+            String tmp = salle;
+            salle = tmp.substring(0, xPerso + yPerso*SIZE_X) + "h" + tmp.substring(xPerso + yPerso*SIZE_X +1);
+        //}
+        for(int i=0;i<SIZE_Y ;i++) {
+            for(int j=0;j<SIZE_X;j++) {
+                System.out.print(salle.substring(j + i*SIZE_X , j + i*SIZE_X +1) + " ");
+            }
+            System.out.println();
+        }
+    }
+
     public void salle(int idSalle){
 
         if(!generer) {
             for(int i =0; i< 3 ;i++) {
-                int randomX = (int)(Math.random() * (SIZE_X-2)+1);
-                int randomY = (int)(Math.random() * (SIZE_Y-3)+1);
+                int randomX;
+                int randomY;
+                do {
+                    randomX = (int)(Math.random() * (SIZE_X-2)+1);
+                    randomY = (int)(Math.random() * (SIZE_Y-3)+1);
+                }while(!salle.substring(randomX + (randomY * SIZE_X), randomX + (randomY * SIZE_X)+1 ).equals("_"));
                 String tmp = salle;
                 salle = new String();
                 if(i == 0) {
@@ -93,13 +126,13 @@ public class Salle {
                         jeu.addEntiteStatique(new DalleUnique(jeu, true, idSalle), j, i);
                     break;
                     case "p":
-                        jeu.addEntiteStatique(new Porte(jeu, idSalle,false), j, i);
+                        jeu.addEntiteStatique(new Porte(jeu, idSalle,false,true), j, i);
                     break;
                     case "D":
-                        jeu.addEntiteStatique(new Porte(jeu, idSalle,true), j, i);
+                        jeu.addEntiteStatique(new Porte(jeu, idSalle,true,true), j, i);
                     break;
                     case "P":
-                        jeu.addEntiteStatique(new Porte(jeu, idSalle-2,true), j, i);
+                        jeu.addEntiteStatique(new Porte(jeu, idSalle-2,true,false), j, i);
                     break;
                     case "h":
                         jeu.getHeros().setXY(j, i);

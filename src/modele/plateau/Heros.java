@@ -72,13 +72,13 @@ public class Heros {
             x++;
             testDalleUnique(x, y);
             ramassable(x,y);
-            porteOuverte(x, y);
         }
         else {
             if(ori.getOri() != ori.droite()) {
                 ori.setOri(ori.droite());
             }
             else{
+                porteOuverte(x+1, y);
                 ouvrirPorte(x + 1, y);
                 saut.droite();
             }
@@ -115,13 +115,13 @@ public class Heros {
             y++;
             testDalleUnique(x, y);
             ramassable(x,y);
-            porteOuverte(x, y);
         }
         else {
             if(ori.getOri() != ori.bas()) {
                 ori.setOri(ori.bas());
             }
             else {
+                porteOuverte(x, y+1);
                 ouvrirPorte(x, y + 1);
                 saut.bas();
             }
@@ -185,8 +185,16 @@ public class Heros {
     private void porteOuverte(int x, int y) {
         EntiteStatique es = jeu.getEntite(x, y);
         if(es instanceof Porte) {
-            jeu.prochaineSalle(((Porte)es).getSalle());
-            inv.setNbCapsules(jeu,2);
+            if(((Porte)es).isVerrouillee()) {
+                if(!((Porte)es).isSerrure()) {
+                jeu.getTabSalle(((Porte)es).getSalle()+1).modifierCoordPerso(x,y);
+                }
+                else {
+                    jeu.getTabSalle(((Porte)es).getSalle()-1).modifierCoordPerso(x,y);
+                }
+                jeu.prochaineSalle(((Porte)es).getSalle());
+                inv.setNbCapsules(jeu,2);
+                }
         }
     } 
 
@@ -197,12 +205,15 @@ public class Heros {
         EntiteStatique es = jeu.getEntite(x, y);
         if (es instanceof Porte) {
             if (inv.getNbCles() > 0) {
+                if(!((Porte)es).isVerrouillee()) {
                 ((Porte) es).setVerrouillee(true);
                 inv.removeCles(jeu);
                 //Code du changement de salle
+                jeu.getTabSalle(((Porte)es).getSalle()-1).modifierCoordPerso(x,y);
+                jeu.getTabSalle(((Porte)es).getSalle()-1).modifierCasePorte(x,y);
                 jeu.prochaineSalle(((Porte)es).getSalle());
                 inv.setNbCapsules(jeu,2);
-                jeu.getTabSalle(((Porte)es).getSalle()-1).modifierCasePorte(x,y);
+                }
             }
         }
     }
