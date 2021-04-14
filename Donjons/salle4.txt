@@ -1,0 +1,12 @@
+m m m m m m m m m m m m m m m m m m m m
+m _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ m
+m _ _ t t t t t _ t _ t _ _ _ _ t _ _ m
+m _ _ t _ _ _ _ _ t _ t t _ _ _ t _ _ m
+m _ _ t t t _ _ _ t _ t _ t _ _ t _ _ m
+m _ _ t _ _ _ _ _ t _ t _ _ t _ t _ _ m
+m _ _ t _ _ _ _ _ t _ t _ _ _ t t _ _ m
+m _ _ t _ _ _ _ _ t _ t _ _ _ _ t _ _ m
+m _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ h P
+m m m m m m m m m m m m m m m m m m m m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+

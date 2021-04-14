@@ -22,7 +22,7 @@ public class Jeu extends Observable implements Runnable {
     private EntiteStatique[][] grilleEntitesStatiques = new EntiteStatique[SIZE_X][SIZE_Y];
 
     public Jeu() {
-        tabSalle = new Salle[3];
+        tabSalle = new Salle[4];
         initialisationDesEntites();
     }
 
@@ -58,9 +58,11 @@ public class Jeu extends Observable implements Runnable {
         tabSalle[0] = new Salle(this);
         tabSalle[1] = new Salle(this);
         tabSalle[2] = new Salle(this);
+        tabSalle[3] = new Salle(this);
         tabSalle[0].lireFichier("salle1.txt");
         tabSalle[1].lireFichier("salle2.txt");
         tabSalle[2].lireFichier("salle3.txt");
+        tabSalle[3].lireFichier("salle4.txt");
         tabSalle[0].salle(1); // On charge la première salle
         
     }

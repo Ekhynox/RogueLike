@@ -17,7 +17,7 @@ public class Saut {
         if (es instanceof Vide) { // si on est sur une case vide
             if (heros.traversable(heros.getX()+2, heros.getY())) {
                 heros.setXY(heros.getX()+2, heros.getY());
-                heros.ramassable(heros.getX()+2, heros.getY());
+                heros.ramassable(heros.getX(), heros.getY());
             }
         }
     }
@@ -29,7 +29,7 @@ public class Saut {
         if (es instanceof Vide) { // si on est sur une case vide
             if (heros.traversable(heros.getX()-2, heros.getY())) {
                 heros.setXY(heros.getX()-2, heros.getY());
-                heros.ramassable(heros.getX()-2, heros.getY());
+                heros.ramassable(heros.getX(), heros.getY());
             }
         }
     }
@@ -41,7 +41,7 @@ public class Saut {
         if (es instanceof Vide) { // si on est sur une case vide
             if (heros.traversable(heros.getX(), heros.getY()+2)) {
                 heros.setXY(heros.getX(), heros.getY()+2);
-                heros.ramassable(heros.getX(), heros.getY()+2);
+                heros.ramassable(heros.getX(), heros.getY());
             }
         }
     }
@@ -53,7 +53,7 @@ public class Saut {
         if (es instanceof Vide) { // si on est sur une case vide
             if (heros.traversable(heros.getX(), heros.getY()-2)) {
                 heros.setXY(heros.getX(), heros.getY()-2);
-                heros.ramassable(heros.getX(), heros.getY()-2);
+                heros.ramassable(heros.getX(), heros.getY());
             }
         }
     }
