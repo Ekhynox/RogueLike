@@ -81,6 +81,7 @@ public class Heros {
                 porteOuverte(x+1, y);
                 ouvrirPorte(x + 1, y);
                 saut.droite();
+                ramassable(x,y);
             }
         }
    }
@@ -102,6 +103,7 @@ public class Heros {
                 porteOuverte(x -1, y);
                 ouvrirPorte(x - 1, y);
                 saut.gauche();
+                ramassable(x,y);
             }
         }
     }
@@ -124,6 +126,7 @@ public class Heros {
                 porteOuverte(x, y+1);
                 ouvrirPorte(x, y + 1);
                 saut.bas();
+                ramassable(x,y);
             }
         }
     }
@@ -147,6 +150,7 @@ public class Heros {
             ouvrirPorte(x, y - 1);
             porteOuverte(x, y - 1);
             saut.haut();
+            ramassable(x,y);
             }
         }
     }
