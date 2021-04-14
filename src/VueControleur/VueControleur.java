@@ -91,9 +91,8 @@ public class VueControleur extends JFrame implements Observer {
                                         // On teste si c'est une dalleUnique et qu'elle est en feu pour ne pas gaspiller de capsule
                                         ((DalleUnique)f).setTraversable(true);
                                         jeu.getHeros().getInventaire().removeCapsule(jeu);
-                                        jeu.getHeros().getInventaire().getInterface().removeCapsule(jeu);
                                         jeu.getTabSalle(((DalleUnique)f).getSalle()-1).modifierCaseUnique(jeu.getHeros().getX() ,jeu.getHeros().getY()-1,true);
-                                        // on enregistre sur la carte le nouvelle état de la dalle unique
+                                        //On enregistre sur la carte le nouvelle état de la dalle unique
                                     }
                                 break;
                                 case Sud:
@@ -101,7 +100,6 @@ public class VueControleur extends JFrame implements Observer {
                                     if(f instanceof DalleUnique && (((DalleUnique)f).isTraversable() == false)) {
                                         ((DalleUnique)f).setTraversable(true);
                                         jeu.getHeros().getInventaire().removeCapsule(jeu);
-                                        jeu.getHeros().getInventaire().getInterface().removeCapsule(jeu);
                                         jeu.getTabSalle(((DalleUnique)f).getSalle()-1).modifierCaseUnique(jeu.getHeros().getX(),jeu.getHeros().getY()+1,true);
                                     }
                                 break;
@@ -110,7 +108,6 @@ public class VueControleur extends JFrame implements Observer {
                                     if(f instanceof DalleUnique && (((DalleUnique)f).isTraversable() == false) ) {
                                         ((DalleUnique)f).setTraversable(true);
                                         jeu.getHeros().getInventaire().removeCapsule(jeu);
-                                        jeu.getHeros().getInventaire().getInterface().removeCapsule(jeu);
                                         jeu.getTabSalle(((DalleUnique)f).getSalle()-1).modifierCaseUnique(jeu.getHeros().getX() -1,jeu.getHeros().getY(),true);
                                     }
                                 break;
@@ -119,7 +116,6 @@ public class VueControleur extends JFrame implements Observer {
                                     if(f instanceof DalleUnique && (((DalleUnique)f).isTraversable() == false)) {
                                         ((DalleUnique)f).setTraversable(true);
                                         jeu.getHeros().getInventaire().removeCapsule(jeu);
-                                        jeu.getHeros().getInventaire().getInterface().removeCapsule(jeu);
                                         jeu.getTabSalle(((DalleUnique)f).getSalle()-1).modifierCaseUnique(jeu.getHeros().getX() +1,jeu.getHeros().getY(),true);
                                     }
                                 break;
