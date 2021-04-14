@@ -21,7 +21,8 @@ Scrolling :
     - On n'affiche que la salle dans  laquelle le joueur se trouve et on charge la bonne salle lorsque le joueur emprunt une porte.
 
 Pour executer:
-    - Importer le projet sur un IDE type Intellij ou VisualStudio et exécuter le projet depuis le main.
+    - Aller dans le fichier bin puis lancer en ligne de commande "java -jar RogueLike.jar" pour lancer l'executable .jar. (Créer automatiquement avec VS Code)
+    - OU Importer le projet sur un IDE type Intellij ou VisualStudio et exécuter le projet depuis le main. 
 
 ----------------------------------------------
 
