@@ -40,8 +40,10 @@ public class Inventaire{
     }
 
     //set le nombre de cles
-    public void setNbCles(int nbCles) {
-        this.nbCles = nbCles;
+    public void setNbCles(Jeu jeu,int nbCles) {
+        while(this.nbCles > nbCles) {
+            removeCles(jeu);
+        }
     }
 
     //Ajoute une cle dans l'inventaire et demande l'affichage dans l'interface;

@@ -219,6 +219,7 @@ public class Heros {
                 // On change la porte en une porte qui n'a plus besoin de clef pour etre passe
                 jeu.prochaineSalle(((Porte)es).getSalle());
                 inv.setNbCapsules(jeu,2);
+                inv.setNbCles(jeu,0);
                 }
             }
         }
